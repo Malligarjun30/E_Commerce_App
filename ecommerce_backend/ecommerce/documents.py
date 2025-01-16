@@ -1,0 +1,17 @@
+from django_elasticsearch_dsl import Document
+from django_elasticsearch_dsl.registries import registry
+from .models import Product
+
+@registry.register_document
+class ProductDocument(Document):
+    class Index:
+        name = 'ecommerceproducts'
+
+    class Django:
+        model = Product
+        fields = [
+            'name',
+            'price',
+            'stock',
+        ]
+
